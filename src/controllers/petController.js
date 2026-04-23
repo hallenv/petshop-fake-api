@@ -1,24 +1,21 @@
-import { pets } from "../data/petData.js";
+import { pets } from "../data/database.js";
 
-// GET (listar pets)
-export const listPets = (req, res) => {
-
-    res.status(200).json(pets);
-};
+// GET (listar tds os pets)
+petRouter.get('/', (req, res) => {
+    res.status(200).json(db.data.pets);
+});
 
 // GET (encontrar pet)
-export const findPetByID = (req, res) => {
+export const findPetByID = async (req, res) => {
     const { id } = req.params;
-    const pet = pets.find(p => p.id === Number(id));
+    const pet = db.data.pets.find(p => p.id === Number(id));
 
-    if (!pet) return res.status(404).json({ ERROR: "NOT FOUND" });
+    if (!pet) return res.status(404).json({ message: "PET NOT FOUND" });
     res.status(200).json(pet);
 };
 
 // POST (criar pet)
-export const newPet = (req, res) => {
-    const novoPet = { id: Date.now(), ...req.body };
+db.data.users.push(newPet)
 
-    pets.push(novoPet);
-    res.status(201).json(novoPet);
-};
+await db.write();
+

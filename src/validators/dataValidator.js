@@ -1,7 +1,7 @@
 import { body, validationResult } from "express-validator";
 import { verifyErrors } from "./validatorMiddleware";
 
-// regras para criar novo pet
+// regras para criar novo pet na lowdb
 export const petValidatationRules = [
     body('nome')
         .trim()
@@ -20,3 +20,18 @@ export const petValidatationRules = [
 
     verifyErrors
 ];
+
+// regra para criar novo user na lowdb 
+// SEPARAR EM OUTRO ARQUIVO
+export const userValidatationRules = [
+    body('nome')
+        .trim()
+        .notEmpty().withMessage('FIELD CANT BE EMPTY')
+        .isLength({ min: 1 }).withMessage('MUST BE ATLEAST 1 CHAR'),
+
+    body('idade')
+        .isInt({ min: 0 }).withMessage('MUST BE A POSITIVE INTEGER'),
+
+    verifyErrors
+];
+
