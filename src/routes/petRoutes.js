@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { listPets, findPetByID, newPet } from '../controllers/petController.js';
-import { dataValidatationRules } from '../validators/dataValidator.js';
-import db from '../data/database.js';
+import { petValidatationRules } from '../validators/petValidator.js';
+import db from '../data/db.js';
 
 const router = Router();
 
@@ -21,7 +21,7 @@ petsRouter.get('/:id', findPetByID(), validateRequest, async (req, res) => {
 
 
 // router p criar novo pet
-petsRouter.post('/', dataValidatationRules, validateRequest, async (req, res) => {
+petsRouter.post('/', petValidatationRules, validateRequest, async (req, res) => {
 const { especie, raca, nome } = req.body;
     
 const newPet = { 

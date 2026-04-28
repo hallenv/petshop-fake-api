@@ -1,7 +1,10 @@
 import { Router } from 'express';
-import { listUsers, newUser, findUserByID } from '../controllers/userController.js';
-import { dataValidatationRules } from '../validators/dataValidator.js';
-import db from '../data/database.js';
+import { listUsers, findUserByID, newUser } from '../controllers/userController.js';
+import { userValidatationRules } from '../validators/userValidator.js';
+import db from '../data/db.js';
+
+const router = Router();
+
 
 // router p listar tds os users
 router.get('/', listUsers);
